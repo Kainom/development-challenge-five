@@ -31,7 +31,6 @@ public class Adapter {
                 addressDTO.street(),
                 addressDTO.city(),
                 addressDTO.state(),
-                addressDTO.country(),
                 addressDTO.neighborhood(),
                 addressDTO.zipCode(),
                 addressDTO.number()
@@ -59,7 +58,6 @@ public class Adapter {
                 address.getStreet(),
                 address.getCity(),
                 address.getState(),
-                address.getCountry(),
                 address.getNeighborhood(),
                 address.getZipCode(),
                 address.getNumber()

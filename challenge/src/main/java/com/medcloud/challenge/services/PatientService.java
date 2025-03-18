@@ -3,12 +3,11 @@ package com.medcloud.challenge.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.MergedAnnotation.Adapt;
 import org.springframework.stereotype.Service;
 
-import com.medcloud.challenge.dtos.AddressDTO;
 import com.medcloud.challenge.dtos.PatientDTO;
+import com.medcloud.challenge.exceptions.err.AddressInvalidException;
+import com.medcloud.challenge.exceptions.err.FieldInvalidException;
 import com.medcloud.challenge.exceptions.err.PatientNotFoundException;
 import com.medcloud.challenge.model.Address;
 import com.medcloud.challenge.model.Patient;
@@ -21,13 +20,15 @@ public class PatientService {
 
     private PatientRepository patientRepository;
     private AddressRepository addressRepository;
+    private AddressService addressService;
     private Adapter adapter;
 
     public PatientService(PatientRepository patientRepository,
-            AddressRepository addressRepository, Adapter adapter) {
+            AddressRepository addressRepository, Adapter adapter, AddressService addressService) {
         this.patientRepository = patientRepository;
         this.addressRepository = addressRepository;
         this.adapter = adapter;
+        this.addressService = addressService;
 
     }
 
@@ -38,8 +39,8 @@ public class PatientService {
             return null;
 
         return patients.stream()
-               .map(adapter::patientModelToDto)
-               .collect(Collectors.toList());
+                .map(adapter::patientModelToDto)
+                .collect(Collectors.toList());
     }
 
     public PatientDTO getPatientById(Long id) {
@@ -56,32 +57,51 @@ public class PatientService {
         return adapter.patientModelToDto(patient);
     }
 
-    public PatientDTO storePatient(Patient patient) {
+    @SuppressWarnings("Is not possible null,because the previous if")
+    public PatientDTO storePatient(PatientDTO patient) {
         // first store the address
-        Address address = addressRepository.save(patient.getAddress());
-        patient.setAddress(address); // set addres that was persisted
+        Patient newPatient = patientRepository.findByEmail(patient.email());
 
-        patient = patientRepository.save(patient);
+        if (!addressService.checkFieldOfAddress(patient.address().zipCode(), patient.address())) {
+            throw new AddressInvalidException("Invalid address");
+        }
 
-        return adapter.patientModelToDto(patient);
+        if (patient.address().zipCode().length() != 8)
+            throw new FieldInvalidException("Invalid zip code");
+
+        if (newPatient != null)
+            throw new FieldInvalidException("Email already exists");
+
+        Address address = addressRepository.save(adapter.addressDtoToModel(patient.address()));
+        newPatient = adapter.patientDtoToModel(patient);
+        newPatient.setAddress(address); // set address in patient
+
+        newPatient = patientRepository.save(newPatient);
+
+        return adapter.patientModelToDto(newPatient);
     }
 
     public PatientDTO updatePatientById(Long id, PatientDTO patientDTO) {
         Patient patient = patientRepository.findById(id).orElseThrow(() -> new PatientNotFoundException());
+        Address address = patient.getAddress();
 
-        if (patient.getFirstName() != null)
+        // verifica se os dados não são nulos,evitando erros.
+        // caso forem nulos,utiliza os dados anteriores do mesmo model
+        if (patientDTO.firstName() != null)
             patient.setFirstName(patientDTO.firstName());
-        if (patient.getLastName() != null)
+        if (patientDTO.lastName() != null)
             patient.setLastName(patientDTO.lastName());
-        if (patient.getPhoneNumber() != null)
+        if (patientDTO.phoneNumber() != null)
             patient.setPhoneNumber(patientDTO.phoneNumber());
-        if (patient.getEmail() != null)
+        if (patientDTO.email() != null)
             patient.setEmail(patientDTO.email());
-        if (patient.getBirthDay() != null)
+        if (patientDTO.birthDay() != null)
             patient.setBirthDay(patientDTO.birthDay());
-        if (patientDTO.address() != null) 
-            patient.setAddress(adapter.addressDtoToModel(patientDTO.address()));
 
+        if (patientDTO.address() != null) {
+            Address newAddress = addressService.updateAddress(patientDTO.address(), address);
+            patient.setAddress(newAddress); // update address in patient
+        }
 
         patient = patientRepository.save(patient);
         return adapter.patientModelToDto(patient);

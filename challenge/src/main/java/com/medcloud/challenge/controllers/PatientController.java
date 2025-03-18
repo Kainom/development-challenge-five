@@ -18,6 +18,8 @@ import com.medcloud.challenge.dtos.PatientDTO;
 import com.medcloud.challenge.model.Patient;
 import com.medcloud.challenge.services.PatientService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/patients") // Endpoint: http://localhost:8080/api/v1/patients
@@ -37,12 +39,12 @@ public class PatientController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<PatientDTO> createPatient(@RequestBody Patient patient) {
+    public ResponseEntity<PatientDTO> createPatient(@Valid @RequestBody PatientDTO patient) {
         return new ResponseEntity<>(patientService.storePatient(patient), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PatientDTO> updatePatient(@PathVariable("id") Long id, @RequestBody PatientDTO patientDTO) {
+    public ResponseEntity<PatientDTO> updatePatient(@Valid @PathVariable("id") Long id, @RequestBody PatientDTO patientDTO) {
         return ResponseEntity.ok(patientService.updatePatientById(id, patientDTO));
     }
 

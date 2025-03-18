@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "patient")
 public class Patient {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -38,7 +37,7 @@ public class Patient {
 
     private String lastName;
 
-    @Column(name = "phone_number", unique = true, nullable = false, length = 20)
+    @Column(name = "phone_number", nullable = false, length = 20)
     private String phoneNumber;
 
     @Column(unique = true, nullable = false, length = 100)

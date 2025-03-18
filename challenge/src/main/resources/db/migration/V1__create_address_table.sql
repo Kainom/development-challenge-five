@@ -7,7 +7,6 @@ CREATE TABLE
         street VARCHAR(120) NOT NULL,
         city VARCHAR(60) NOT NULL,
         state_ VARCHAR(60) NOT NULL,
-        country VARCHAR(60) NOT NULL,
         neighborhood VARCHAR(60) NOT NULL,
         zip_code VARCHAR(10) NOT NULL,
         number_house INTEGER NOT NULL,
