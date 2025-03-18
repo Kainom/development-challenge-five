@@ -11,6 +11,6 @@ public record PatientDTO(
                 String phoneNumber,
                 String email,
                 Date birthDay,
-                Address address) {
+                AddressDTO address) {
 
 }

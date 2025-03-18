@@ -25,25 +25,30 @@ import lombok.NoArgsConstructor;
 @Table(name = "patient")
 public class Patient {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
 
-    @Column(nullable = false, length = 60)
+    @Column(name = "first_name", nullable = false, length = 60)
     private String firstName;
 
-    @Column(nullable = false, length = 60)
+    @Column(name = "last_name", nullable = false, length = 60)
+
     private String lastName;
 
+    @Column(name = "phone_number", unique = true, nullable = false, length = 20)
     private String phoneNumber;
-    @Column(unique = true, nullable = false)
+
+    @Column(unique = true, nullable = false, length = 100)
     private String email;
 
+    @Column(name = "birth_day", nullable = false)
     private Date birthDay;
 
     @OneToOne(cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "address_id",nullable = false)
+    @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
 }

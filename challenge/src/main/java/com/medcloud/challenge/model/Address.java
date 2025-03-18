@@ -11,8 +11,10 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Table(name = "address")
 @Entity
@@ -42,8 +44,5 @@ public class Address {
 
     @Column(name = "number_house",nullable = false)
     private Integer number;
-
-    @OneToOne(mappedBy = "address",fetch = FetchType.LAZY)
-    private Patient patient;
 
 }

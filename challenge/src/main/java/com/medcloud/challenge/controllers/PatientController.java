@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.medcloud.challenge.dtos.PatientDTO;
+import com.medcloud.challenge.model.Patient;
 import com.medcloud.challenge.services.PatientService;
 
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/patients") // Endpoint: http://localhost:8080/api/v1/patients
@@ -38,8 +37,8 @@ public class PatientController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<PatientDTO> createPatient(@RequestBody PatientDTO patientDTO) {
-        return new ResponseEntity<>(patientService.storePatient(patientDTO), HttpStatus.CREATED);
+    public ResponseEntity<PatientDTO> createPatient(@RequestBody Patient patient) {
+        return new ResponseEntity<>(patientService.storePatient(patient), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
