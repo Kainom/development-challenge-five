@@ -16,7 +16,8 @@ public class AdapterPatient implements IAdapterPatient {
                 patientDTO.lastName(),
                 patientDTO.phoneNumber(),
                 patientDTO.email(),
-                patientDTO.birthDay());
+                patientDTO.birthDay(),
+                patientDTO.address());
 
     }
 
@@ -28,7 +29,8 @@ public class AdapterPatient implements IAdapterPatient {
                 patient.getLastName(),
                 patient.getPhoneNumber(),
                 patient.getEmail(),
-                patient.getBirthDay());
+                patient.getBirthDay(),
+                patient.getAddress());
     }
 
 }
