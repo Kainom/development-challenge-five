@@ -56,17 +56,20 @@ DB_PASSWORD=uour_password
 2. `mvn clean package`
 3. `java -jar target/challenge-1.0.0-Release.jar` 
 
-## Tecnologias usadas 
+## Algumas Das Tecnologias Usadas 
 
-:heavy_check_mark: React 
+☕ java 23 
 
-:heavy_check_mark: Node 
+🐘 postgress (postgress last image) 
  
-:heavy_check_mark: Firebase  
+🐳 Docker (para usar o banco)  
 
-## Autores 
+## Autor
 
-| Mateus Pitura | 
-|------| 
-| <p align="center"><img src="https://user-images.githubusercontent.com/119008106/227821967-fac62c31-0d62-485b-829e-ef56c033e21a.jpeg" width="100" height="100"></p> | 
-| <a href="https://www.linkedin.com/in/mateuspitura/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"> |
+💻 Kainã Felipe
+<div> 
+</a>
+<a href = "mailto:contato.eleuteriokaina@gmail.com"> <img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+<a href="https://www.linkedin.com/in/kain%C3%A3-eleut%C3%A9rio-9528a3208/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white"  target="_blank"></a> 
+</div>&nbsp;&nbsp;
+ 
