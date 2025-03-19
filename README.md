@@ -1,51 +1,68 @@
-![logo medcloud-03 white copy](https://user-images.githubusercontent.com/46347123/158176045-de9fefb0-35e2-4515-83ff-c132608aa870.png)
+<h1 align="center"> 
+  <p>Rest API to Patient Management</p> 
+</h1> 
 
-About Medcloud:
+<p> 
+  <img src="https://img.shields.io/badge/Challenge%20Completed-8A2BE2">  
+</p> 
 
-We make exams and medical data management more flexible, secure and effective by accelerating the transition from clinics and hospitals to the cloud.
-The RIS and PACS systems have been practically the same for the past 25 years. Interoperability problems, high costs and a lack of understanding about the patient's access to his medical records.
 
-These points defined limits for the doctor-patient relationship and barriers to radiology workflows. We are revolutionizing this through a Care Coordination based solution that improves workflows for providers and integrates doctors and patients for a better experience.
+## Descrição 
 
-Since our foundation, almost 10 years ago, we have prioritized excellence in the management of health data, structuring workflows of health professionals, clinics, laboratories and hospitals for assertive and quality diagnostics.
+Este sistema é uma API REST simples, desenvolvida com Spring Boot. A comunicação com a API é realizada por meio de requisições HTTP, e os dados são estruturados em formato JSON, assegurando fácil integração e uso em diferentes aplicações.
 
-We understand that behind each medical record there is a patient seeking to improve his health and the hope of family members for his well being. After all, we are all patients, and Medcloud's mission is to help you live longer and better. #PatientFirst
+Permite o gerenciamento de registros de pacientes.
+Implementa as operações de CRUD (Criar, Ler, Atualizar e Deletar) para pacientes.
+Inclui um sistema de autenticação para segurança.
 
-# Development challenge
+## Índice 
 
-Medcloud's challenge for Java Backend Dev.
+- [Funcionalidades](#funcionalidades) 
+- [Como executar](#como-executar) 
+- [Tecnologias usadas](#tecnologias-usadas) 
+- [Autores](#autores) 
 
-## Goal
+## Funcionalidades 
 
-- To develop a Rest API using Spring Boot. The API will receive the following data by JSON (Patient's name, birth date, email and address) and persist those fields on a relational database of your choice.
+:fire: **Firebase:** para a persistência dos dados foi usado o sistema de banco de dados Firestore, um recurso do Firebase, o qual é mantido pela Google 
 
-## Required
+:page_with_curl: **Paginação:** os dados são carregados em páginas
 
-- You need to develop the Rest API using Spring Boot.
-- You need to develop an API operation to query records (Patient's name, birth date, email and address) by patient email.
-- The API need to have validation by a password or other validation method of your choice. 
+:mailbox_with_mail: **ViaCEP:** para a validação dos CEPs foi utilizado a API do ViaCEP 
 
-## What will be evaluated:
+https://github.com/MateusPitura/development-challenge-nine/assets/119008106/de1bda45-19ab-47ba-b434-d59fb005c52c
 
-- Clean and organized code (naming, etc.)
-- Knowledge of patterns (PSRs, design patterns, SOLID)
-- Be consistent and know how to argue your choices
-- Present solutions you master
-- Data Modeling
-- Code maintainability
-- Error handling
-- Architecture (structuring thought before writing)
-- Affection in decoupling components (other layers, service, repository)
+## Como executar 
 
-According to the above criteria, we will evaluate your test in order to proceed to the technical interview. If you have not acceptably achieved what we are proposing above, we will not proceed with the process.
+**Para devs | cliente:** 
 
-## Delivery
+1. Clone o repositório e entre na pasta do client
 
-You MUST fork this repository to your own account and push you code to it. 
-When you finish it, you must send a email to cv@medcloud.com.br with your curriculum and your fork.
+2. `npm install` 
 
-Good luck! Any doubts, feel free to send an email to cv@medcloud.com.br.
+3. `npm start`
 
-## For the day of the technical interview and code review
+**Para devs | servidor:** 
 
-On the date set by the recruiter, have your application running on your local machine to run the tests and to show us the points developed and possible questions. We will do a code review together with you as if you were already on our team, you will be able to explain what you thought, how you architected and how the project can evolve. Good luck!
+1. Clone o repositório e entre na pasta do server
+
+2. `npm install`
+
+3. No arquivo `server.js` altere o caminho da `key.json` (uma chave privada fornecida pelo Firebase para conexão) no trecho de código `const credentials = require("../../key.json")`
+
+4. `npm start`
+
+## Tecnologias usadas 
+
+:heavy_check_mark: React 
+
+:heavy_check_mark: Node 
+ 
+:heavy_check_mark: Firebase  
+
+## Autores 
+
+| Mateus Pitura | 
+|------| 
+| <p align="center"><img src="https://user-images.githubusercontent.com/119008106/227821967-fac62c31-0d62-485b-829e-ef56c033e21a.jpeg" width="100" height="100"></p> | 
+| <a href="https://www.linkedin.com/in/mateuspitura/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"> |
