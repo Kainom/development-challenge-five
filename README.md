@@ -33,23 +33,28 @@ Inclui um sistema de autenticação para segurança.
 
 ## Como executar 
 
-**Para devs | cliente:** 
+**Crie um env com a seguint estrutura:** 
+``` env
+APP_PORT=port
+DB_URL=jdbc:postgresql://localhost:5434/your_database
+DB_USER=your_user
+DB_PASSWORD=uour_password
+```
+**Observações**
+- O env não é estritamente necessário,use os dados diretamente no properties se não quiser usá-lo
+- Recomendo a utilização da porta 8000 ou 8001,isso pode evitar problemas com outras portas
+- A api possui migrations,cuidado para não editar migrations ja realizadas no banco de dados
 
-1. Clone o repositório e entre na pasta do client
+**Executando direto com spring**
 
-2. `npm install` 
+1. clone o repositório e entre no folder challenge
+2. `mvn install`
+3. `mvn spring-boot:run`
 
-3. `npm start`
-
-**Para devs | servidor:** 
-
-1. Clone o repositório e entre na pasta do server
-
-2. `npm install`
-
-3. No arquivo `server.js` altere o caminho da `key.json` (uma chave privada fornecida pelo Firebase para conexão) no trecho de código `const credentials = require("../../key.json")`
-
-4. `npm start`
+**Executando com jar**
+1. clone o repositório e entre no folder challenge
+2. `mvn clean package`
+3. `java -jar target/challenge-1.0.0-Release.jar` 
 
 ## Tecnologias usadas 
 
