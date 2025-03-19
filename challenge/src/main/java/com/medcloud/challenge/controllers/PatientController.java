@@ -20,7 +20,6 @@ import com.medcloud.challenge.services.PatientService;
 
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping("/patients") // Endpoint: http://localhost:8080/api/v1/patients
 public class PatientController {
@@ -38,13 +37,19 @@ public class PatientController {
         return ResponseEntity.ok(patientService.getPatientByEmail(email));
     }
 
+    @GetMapping("/id/{id}")
+    public ResponseEntity<PatientDTO> getPatientById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(patientService.getPatientById(id));
+    }
+
     @PostMapping("/")
     public ResponseEntity<PatientDTO> createPatient(@Valid @RequestBody PatientDTO patient) {
         return new ResponseEntity<>(patientService.storePatient(patient), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PatientDTO> updatePatient(@Valid @PathVariable("id") Long id, @RequestBody PatientDTO patientDTO) {
+    public ResponseEntity<PatientDTO> updatePatient(@Valid @PathVariable("id") Long id,
+            @RequestBody PatientDTO patientDTO) {
         return ResponseEntity.ok(patientService.updatePatientById(id, patientDTO));
     }
 
