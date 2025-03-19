@@ -44,7 +44,7 @@ DB_PASSWORD=uour_password
 - O env não é estritamente necessário,use os dados diretamente no properties se não quiser usá-lo
 - Recomendo a utilização da porta 8000 ou 8001,isso pode evitar problemas com outras portas
 - A api possui migrations,cuidado para não editar migrations ja realizadas no banco de dados
-
+- Caso deseje criar o .env, o mesmo deve estar no mesmo nivel do folder /src e do pomo.xml
 **Executando direto com spring**
 
 1. clone o repositório e entre no folder challenge
