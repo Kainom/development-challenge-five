@@ -24,15 +24,12 @@ Inclui um sistema de autenticação para segurança.
 🗺️**ViaCEP**: Para a validação do endereço foi utilizado a API pública ViaCEP
 
 
-## Funcionalidades 
+## Preview Da Estrutura
+|        |
+|------|
+| <img src="https://github.com/user-attachments/assets/6814fdc9-f33a-44d5-9b7a-7903972428a0"/>
 
-:fire: **Firebase:** para a persistência dos dados foi usado o sistema de banco de dados Firestore, um recurso do Firebase, o qual é mantido pela Google 
 
-:page_with_curl: **Paginação:** os dados são carregados em páginas
-
-:mailbox_with_mail: **ViaCEP:** para a validação dos CEPs foi utilizado a API do ViaCEP 
-
-https://github.com/MateusPitura/development-challenge-nine/assets/119008106/de1bda45-19ab-47ba-b434-d59fb005c52c
 
 ## Como executar 
 
