@@ -15,12 +15,14 @@ Permite o gerenciamento de registros de pacientes.
 Implementa as operações de CRUD (Criar, Ler, Atualizar e Deletar) para pacientes.
 Inclui um sistema de autenticação para segurança.
 
-## Índice 
+## Adendos Tecnológicos 
 
-- [Funcionalidades](#funcionalidades) 
-- [Como executar](#como-executar) 
-- [Tecnologias usadas](#tecnologias-usadas) 
-- [Autores](#autores) 
+🐘**postgresql**: Persiste os dados em um banco de dados postgresql no docker(img postgres:latest) 
+
+🔐**JWT**: A segurança é feita com tokens via JWT
+
+🗺️**ViaCEP**: Para a validação do endereço foi utilizado a API pública ViaCEP
+
 
 ## Funcionalidades 
 
