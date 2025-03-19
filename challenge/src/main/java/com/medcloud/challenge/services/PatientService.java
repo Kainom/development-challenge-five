@@ -82,7 +82,14 @@ public class PatientService {
     }
 
     public PatientDTO updatePatientById(Long id, PatientDTO patientDTO) {
-        Patient patient = patientRepository.findById(id).orElseThrow(() -> new PatientNotFoundException());
+        Patient patient;
+        if (patientDTO.email() != null) {
+            patient = patientRepository.findByEmail(patientDTO.email());
+            if (patient != null && !patient.getId().equals(id))
+                throw new FieldInvalidException("Email already exists");
+        }
+
+        patient = patientRepository.findById(id).orElseThrow(() -> new PatientNotFoundException());
         Address address = patient.getAddress();
 
         // verifica se os dados não são nulos,evitando erros.

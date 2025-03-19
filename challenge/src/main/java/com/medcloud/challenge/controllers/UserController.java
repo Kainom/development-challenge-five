@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.medcloud.challenge.dtos.PartialUserDTO;
 import com.medcloud.challenge.dtos.UserDTO;
 import com.medcloud.challenge.model.User;
 import com.medcloud.challenge.services.UserService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
@@ -19,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/")
-    public ResponseEntity<UserDTO> createUser(@RequestBody User user) {
+    public ResponseEntity<PartialUserDTO> createUser(@Valid @RequestBody UserDTO user) {
         return ResponseEntity.ok(userService.storeUser(user));
 
     }

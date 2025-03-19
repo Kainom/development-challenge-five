@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.medcloud.challenge.dtos.ErrorDTO;
 import com.medcloud.challenge.exceptions.err.AddressInvalidException;
 import com.medcloud.challenge.exceptions.err.CepInvalidException;
+import com.medcloud.challenge.exceptions.err.ErroLoginException;
 import com.medcloud.challenge.exceptions.err.FieldInvalidException;
 import com.medcloud.challenge.exceptions.err.PatientNotFoundException;
 
@@ -52,6 +53,16 @@ public class PatientControllerAdvice {
 
     @ExceptionHandler(FieldInvalidException.class)
     public ResponseEntity<ErrorDTO> handlFieldException(RuntimeException ex) {
+        String message = ex.getMessage();
+        Integer status = HttpStatus.BAD_REQUEST.value();
+
+        ErrorDTO errorDTO = new ErrorDTO(status, message, new Date());
+        return new ResponseEntity<>(errorDTO, HttpStatus.BAD_REQUEST);
+
+    }
+
+    @ExceptionHandler(ErroLoginException.class)
+    public ResponseEntity<ErrorDTO> handleLoginException(RuntimeException ex) {
         String message = ex.getMessage();
         Integer status = HttpStatus.BAD_REQUEST.value();
 
