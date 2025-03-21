@@ -5,8 +5,8 @@ services:
     environment:
       APP_PORT: 8080
       DB_URL: jdbc:postgresql://db:5432/med_challenge
-      DB_USER: kainom
-      DB_PASSWORD: 1234
+      DB_USER: your_user
+      DB_PASSWORD: 123
     ports:
       - "8001:8080"
     depends_on:
@@ -19,8 +19,8 @@ services:
     container_name: db-med-cloud
     environment:
       POSTGRES_DB: med_challenge
-      POSTGRES_USER: kainom
-      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: your_user
+      POSTGRES_PASSWORD: 123
     ports:
       - "5433:5432"
     networks:
