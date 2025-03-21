@@ -64,6 +64,26 @@ DB_PASSWORD=uour_password
  
 🐳 Docker (para usar o banco)  
 
+## Containerization 
+**passo a passo para usar aplicação containerizada*
+1. `docker pull kainom/med-app-challenge`
+2. `docker network  create your-network`
+3. ``` bash
+   docker run --name name-db --network your-network -p 5434:5432 \
+   -e POSTGRES_USER=kainom \
+   -e POSTGRES_PASSWORD=1234 \
+   -e POSTGRES_DB=med_challenge  -d postgres:latest              
+   ```
+4. ```bash
+     docker run --name name-app --network your-network -p 8001:8080 \
+    -e DB_URL=jdbc:postgresql://name-db:5432/med_challenge \
+    -e DB_USER=kainom \
+    -e DB_PASSWORD=1234  kainom/med-app-challenge:latest
+   ```
+### Observation
+- Uma network custom foi criada para facilitar a comunicação entre os containers
+- Pode-se utilizar o db local se assim for desejado,basta alterar as configurações para localhost:port
+
 ## Autor
 
 💻 Kainã Felipe
