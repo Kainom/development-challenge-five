@@ -1,0 +1,30 @@
+services:
+  med-app:
+    build: .  
+    container_name: md-cloud_app
+    environment:
+      APP_PORT: 8080
+      DB_URL: jdbc:postgresql://db:5432/med_challenge
+      DB_USER: kainom
+      DB_PASSWORD: 1234
+    ports:
+      - "8001:8080"
+    depends_on:
+      - db
+    networks:
+      - app-network
+ 
+  db:
+    image: postgres
+    container_name: db-med-cloud
+    environment:
+      POSTGRES_DB: med_challenge
+      POSTGRES_USER: kainom
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5433:5432"
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
