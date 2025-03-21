@@ -83,6 +83,8 @@ DB_PASSWORD=uour_password
 ### Observation
 - Uma network custom foi criada para facilitar a comunicação entre os containers
 - Pode-se utilizar o db local se assim for desejado,basta alterar as configurações para localhost:port
+- Caso deseje evitar esse processo,utilize docker compose up em challenge
+
 
 ## Autor
 
