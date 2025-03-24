@@ -66,7 +66,7 @@ DB_PASSWORD=uour_password
 🐳 Docker (para usar o banco)  
 
 ## Containerization 
-**passo a passo para usar aplicação containerizada*
+**passo a passo para usar aplicação containerizada**
 1. `docker pull kainom/med-app-challenge`
 2. `docker network  create your-network`
 3. ``` bash
