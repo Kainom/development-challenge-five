@@ -18,8 +18,21 @@ import com.medcloud.challenge.exceptions.err.ErroLoginException;
 import com.medcloud.challenge.exceptions.err.FieldInvalidException;
 import com.medcloud.challenge.exceptions.err.PatientNotFoundException;
 
-import jakarta.validation.ConstraintViolationException;
 
+/**
+ * @class PatientControllerAdvice
+ * @description This class handles exceptions thrown by the PatientController
+ *              and provides appropriate error responses.
+ * @apiNote  handlePatientNotFound Handles PatientNotFoundException and returns a
+ *          404 Not Found response with an error message.
+ * @apiNote  handleRuntimeException Handles RuntimeException and returns a 400 Bad
+ *          Request response with an error message.
+ * @apiNote  handlCepException Handles CepInvalidException and AddressInvalidException and returns a 400 Bad Request response with an error message.
+ * @apiNote  handlFieldException Handles FieldInvalidException and returns a 400 Bad Request response with an error message.
+ * @apiNote  handleLoginException Handles ErroLoginException and returns a 400 Bad Request response with an error message.
+ * @apiNote  handleValidationExceptions Handles MethodArgumentNotValidException and returns a map of validation errors.
+ *
+ */
 @ControllerAdvice
 public class PatientControllerAdvice {
     @ExceptionHandler(PatientNotFoundException.class)

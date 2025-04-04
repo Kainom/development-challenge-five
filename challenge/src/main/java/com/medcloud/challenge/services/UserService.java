@@ -9,6 +9,14 @@ import com.medcloud.challenge.exceptions.err.FieldInvalidException;
 import com.medcloud.challenge.model.User;
 import com.medcloud.challenge.repository.UserRepository;
 
+/**
+ * @class UserService
+ * @description This class is responsible for managing user-related operations,
+ *              including storing user information and validating user data.
+ * @apiNote  userRepository UserRepository object for database operations
+ * @apiNote  auth AuthService object for authentication-related operations
+ *
+ */
 @Service
 public class UserService {
 

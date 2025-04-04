@@ -12,6 +12,15 @@ import com.medcloud.challenge.model.Address;
 import com.medcloud.challenge.patterns.adapters.Adapter;
 import com.medcloud.challenge.repository.AddressRepository;
 
+/**
+ * @class AddressService
+ * @description This class is responsible for managing address-related operations,
+ *              including retrieving address information and validating address data.
+ * @apiNote  addressRepository AddressRepository object for database operations
+ * @apiNote  cepService CepService object for retrieving address information from the ViaCEP API
+ * @apiNote  adapter Adapter object for converting between Address and AddressDTO
+ *
+ */
 @Service
 public class AddressService {
 

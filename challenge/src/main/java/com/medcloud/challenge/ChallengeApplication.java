@@ -3,6 +3,12 @@ package com.medcloud.challenge;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
+/**
+ * @author
+ * @version 1.0 
+ *
+ */
 @SpringBootApplication
 public class ChallengeApplication {
 

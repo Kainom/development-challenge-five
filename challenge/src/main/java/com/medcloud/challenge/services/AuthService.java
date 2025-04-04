@@ -10,6 +10,15 @@ import com.medcloud.challenge.model.User;
 import com.medcloud.challenge.repository.UserRepository;
 import com.medcloud.challenge.security.JwtUtil;
 
+/**
+ * @class AuthService
+ * @description This class is responsible for managing user authentication and
+ *              password encoding.
+ * @apiNote  userRepository UserRepository object for database operations
+ * @apiNote  passwordEncoder BCryptPasswordEncoder object for password encoding
+ * @apiNote  jwtUtil JwtUtil object for generating JWT tokens
+ *
+ */
 @Service
 public class AuthService {
 

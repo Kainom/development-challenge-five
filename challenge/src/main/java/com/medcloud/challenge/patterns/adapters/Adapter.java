@@ -7,10 +7,19 @@ import com.medcloud.challenge.dtos.PatientDTO;
 import com.medcloud.challenge.model.Address;
 import com.medcloud.challenge.model.Patient;
 
+/**
+ * @class Adapter
+ * @description This class is responsible for converting between DTOs and models.
+ * @apiNote  patientDtoToModel Converts PatientDTO to Patient model
+ * @apiNote  addressDtoToModel Converts AddressDTO to Address model
+ * @apiNote  patientModelToDto Converts Patient model to PatientDTO
+ * @apiNote  addressModelToDto Converts Address model to AddressDTO
+ *
+ */
 @Component
 public class Adapter {
 
-    // Método para converter de PatientDTO para Patient
+
     public Patient patientDtoToModel(PatientDTO patientDTO) {
         Address address = addressDtoToModel(patientDTO.address()); // Convertendo AddressDTO para Address
         return new Patient(
