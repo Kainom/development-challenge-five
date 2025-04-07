@@ -18,23 +18,35 @@ import com.medcloud.challenge.exceptions.err.ErroLoginException;
 import com.medcloud.challenge.exceptions.err.FieldInvalidException;
 import com.medcloud.challenge.exceptions.err.PatientNotFoundException;
 
-
 /**
- * @class PatientControllerAdvice
- * @description This class handles exceptions thrown by the PatientController
- *              and provides appropriate error responses.
- * @apiNote  handlePatientNotFound Handles PatientNotFoundException and returns a
- *          404 Not Found response with an error message.
- * @apiNote  handleRuntimeException Handles RuntimeException and returns a 400 Bad
- *          Request response with an error message.
- * @apiNote  handlCepException Handles CepInvalidException and AddressInvalidException and returns a 400 Bad Request response with an error message.
- * @apiNote  handlFieldException Handles FieldInvalidException and returns a 400 Bad Request response with an error message.
- * @apiNote  handleLoginException Handles ErroLoginException and returns a 400 Bad Request response with an error message.
- * @apiNote  handleValidationExceptions Handles MethodArgumentNotValidException and returns a map of validation errors.
+ * PatientControllerAdvice
+ * This class handles exceptions thrown by the PatientController
+ * and provides appropriate error responses.
+ * handlePatientNotFound Handles PatientNotFoundException and returns a
+ * 404 Not Found response with an error message.
+ * handleRuntimeException Handles RuntimeException and returns a 400 Bad
+ * Request response with an error message.
+ * handlCepException Handles CepInvalidException and AddressInvalidException and
+ * returns a 400 Bad Request response with an error message.
+ * handlFieldException Handles FieldInvalidException and returns a 400 Bad
+ * Request response with an error message.
+ * handleLoginException Handles ErroLoginException and returns a 400 Bad Request
+ * response with an error message.
+ * handleValidationExceptions Handles MethodArgumentNotValidException and
+ * returns a map of validation errors.
  *
  */
 @ControllerAdvice
 public class PatientControllerAdvice {
+
+    /**
+     * Handles PatientNotFoundException and returns a 404 Not Found response with an
+     * error message.
+     *
+     * @param patientNotFoundException the exception thrown when a patient is not
+     *                                 found
+     * @return a ResponseEntity containing the error details
+     */
     @ExceptionHandler(PatientNotFoundException.class)
     public ResponseEntity<ErrorDTO> handlePatientNotFound(PatientNotFoundException patientNotFoundException) {
         String message = "Patient not Found";
@@ -44,6 +56,13 @@ public class PatientControllerAdvice {
         return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Handles RuntimeException and returns a 400 Bad Request response with an error
+     * message.
+     *
+     * @param ex the exception thrown
+     * @return a ResponseEntity containing the error details
+     */
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ErrorDTO> handleRuntimeException(RuntimeException ex) {
         String message = "Bad Request";
@@ -54,6 +73,16 @@ public class PatientControllerAdvice {
 
     }
 
+    /**
+     * Handles CepInvalidException and AddressInvalidException and returns a 400 Bad
+     * Request response with an error message.
+     *
+     * @param ex the exception thrown
+     * @return a ResponseEntity containing the error details
+     * @see ErrorDTO
+     * @see CepInvalidException
+     * @see AddressInvalidException
+     */
     @ExceptionHandler({ CepInvalidException.class, AddressInvalidException.class })
     public ResponseEntity<ErrorDTO> handlCepException(RuntimeException ex) {
         String message = ex.getMessage();
@@ -64,6 +93,15 @@ public class PatientControllerAdvice {
 
     }
 
+    /**
+     * Handles FieldInvalidException and returns a 400 Bad Request response with an
+     * error message.
+     *
+     * @param ex the exception thrown
+     * @return a ResponseEntity containing the error details
+     * @see ErrorDTO
+     * @see FieldInvalidException
+     */
     @ExceptionHandler(FieldInvalidException.class)
     public ResponseEntity<ErrorDTO> handlFieldException(RuntimeException ex) {
         String message = ex.getMessage();
@@ -74,6 +112,16 @@ public class PatientControllerAdvice {
 
     }
 
+    /**
+     * Handles ErroLoginException and returns a 400 Bad Request response with an
+     * error
+     * message.
+     *
+     * @param ex the exception thrown
+     * @return a ResponseEntity containing the error details
+     * @see ErrorDTO
+     * @see ErroLoginException
+     */
     @ExceptionHandler(ErroLoginException.class)
     public ResponseEntity<ErrorDTO> handleLoginException(RuntimeException ex) {
         String message = ex.getMessage();
@@ -84,7 +132,15 @@ public class PatientControllerAdvice {
 
     }
 
-    // errors cathc of valid,this is a default form of catch the messages
+    /**
+     * Handles MethodArgumentNotValidException and returns a map of validation
+     * errors.
+     * Catches validation errors in the request body and returns a 400 Bad
+     * For example,the email is invalid or the password is empty.
+     * 
+     * @param ex the exception thrown
+     * @return a ResponseEntity containing the validation errors
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();

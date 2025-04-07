@@ -5,10 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @class AppConfig
- * @description This class is responsible for configuring the application context,
- *              including the RestTemplate bean for making HTTP requests.
- * @apiNote  restTemplate RestTemplate object for making HTTP requests
+ * This class is responsible for configuring the application
+ * context,including the RestTemplate bean for making HTTP requests.
+ * 
+ * @see RestTemplate RestTemplate object for making HTTP requests
  *
  */
 

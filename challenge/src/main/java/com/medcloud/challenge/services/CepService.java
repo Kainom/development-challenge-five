@@ -10,11 +10,10 @@ import com.medcloud.challenge.exceptions.err.CepInvalidException;
 
 /**
  * 
- * @class CepService
- * @description This class is responsible for retrieving address information
- *              from the ViaCEP API using a provided cep (postal code).
- * @apiNote  restTemplate RestTemplate object for making HTTP requests
- * @apiNote  VIA_CEP_URL URL for the ViaCEP API endpoint
+ *      This class is responsible for retrieving address information
+ *      from the ViaCEP API using a provided cep (postal code).
+ * @see RestTemplate object for making HTTP requests
+ *      VIA_CEP_URL url  for the ViaCEP API endpoint
  *
  */
 @Service
@@ -30,7 +29,7 @@ public class CepService {
      * @param cep cep to get address
      * @return AddressDTO object with address information
      * @throws CepInvalidException if the provided cep is invalid
-     * @description This method retrieves address information from the ViaCEP API
+     *  This method retrieves address information from the ViaCEP API
      *              using the provided cep.
      */
     public CepApiDTO getAddressByCep(String cep) {

@@ -20,6 +20,13 @@ import com.medcloud.challenge.services.PatientService;
 
 import jakarta.validation.Valid;
 
+/**
+ * PatientController
+ * 
+ * This class is a REST controller that handles HTTP requests related to patients.
+ * It provides endpoints for creating, retrieving, updating, and deleting patient records.
+ * 
+ */
 @RestController
 @RequestMapping("/patients") // Endpoint: http://localhost:8080/api/v1/patients
 public class PatientController {

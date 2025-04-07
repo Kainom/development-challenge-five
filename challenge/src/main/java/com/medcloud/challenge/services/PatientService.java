@@ -15,6 +15,17 @@ import com.medcloud.challenge.patterns.adapters.Adapter;
 import com.medcloud.challenge.repository.AddressRepository;
 import com.medcloud.challenge.repository.PatientRepository;
 
+
+
+/**
+ * This class is responsible for managing patient-related operations,
+ * including retrieving patient information, storing new patients, updating
+ * existing patients, and deleting patients.
+ *
+ * @see AddressService object for managing address-related operations
+ * @see Adapter object for converting between Patient and PatientDTO
+ *
+ */
 @Service
 public class PatientService {
 
@@ -22,6 +33,8 @@ public class PatientService {
     private AddressRepository addressRepository;
     private AddressService addressService;
     private Adapter adapter;
+
+
 
     public PatientService(PatientRepository patientRepository,
             AddressRepository addressRepository, Adapter adapter, AddressService addressService) {
@@ -32,6 +45,12 @@ public class PatientService {
 
     }
 
+    /**
+     * This method retrieves all patients from the database and converts them to
+     * PatientDTO using the adapter.
+     *
+     * @return List of PatientDTO objects with patient information
+     */
     public List<PatientDTO> getAllPatients() {
         List<Patient> patients = patientRepository.findAll();
 
@@ -43,6 +62,14 @@ public class PatientService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * This method retrieves a patient by ID from the database and converts it to
+     * PatientDTO using the adapter.
+     *
+     * @param id ID of the patient to be retrieved
+     * @return PatientDTO object with patient information
+     * @throws PatientNotFoundException if the patient is not found
+     */
     public PatientDTO getPatientById(Long id) {
         Patient patient = patientRepository.findById(id).orElseThrow(() -> new PatientNotFoundException());
         return adapter.patientModelToDto(patient);
@@ -57,6 +84,16 @@ public class PatientService {
         return adapter.patientModelToDto(patient);
     }
 
+    /**
+     * This method stores a new patient in the database. It first checks if the
+     * address is valid and then saves the address and patient to the database.
+     *
+     * @param patient PatientDTO object with patient information
+     * @return PatientDTO object with saved patient information
+     * @throws AddressInvalidException if the address is not valid
+     * @throws FieldInvalidException   if the email already exists or if the zip code
+     *                                 is invalid
+     */
     @SuppressWarnings("Is not possible null,because the previous if")
     public PatientDTO storePatient(PatientDTO patient) {
         // first store the address
@@ -81,6 +118,19 @@ public class PatientService {
         return adapter.patientModelToDto(newPatient);
     }
 
+
+    /**
+     * This method updates an existing patient in the database. It first checks if
+     * the address is valid and then updates the address and patient in the database.
+     *
+     * @param id        ID of the patient to be updated
+     * @param patientDTO PatientDTO object with new values to update
+     * @return PatientDTO object with updated patient information
+     * @throws AddressInvalidException if the address is not valid
+     * @throws FieldInvalidException   if the email already exists or if the zip code
+     *                                 is invalid
+     * the method also checks if exist null values in the patientDTO and if so   keeps the old values in the  patient
+     */
     public PatientDTO updatePatientById(Long id, PatientDTO patientDTO) {
         Patient patient;
         if (patientDTO.email() != null) {

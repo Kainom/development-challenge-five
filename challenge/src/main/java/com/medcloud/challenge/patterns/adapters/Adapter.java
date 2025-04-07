@@ -8,18 +8,23 @@ import com.medcloud.challenge.model.Address;
 import com.medcloud.challenge.model.Patient;
 
 /**
- * @class Adapter
- * @description This class is responsible for converting between DTOs and models.
- * @apiNote  patientDtoToModel Converts PatientDTO to Patient model
- * @apiNote  addressDtoToModel Converts AddressDTO to Address model
- * @apiNote  patientModelToDto Converts Patient model to PatientDTO
- * @apiNote  addressModelToDto Converts Address model to AddressDTO
+ * This class is responsible for converting between DTOs and models.
+ * patientDtoToModel Converts PatientDTO to Patient model
+ * addressDtoToModel Converts AddressDTO to Address model
+ * patientModelToDto Converts Patient model to PatientDTO
+ * addressModelToDto Converts Address model to AddressDTO
  *
  */
 @Component
 public class Adapter {
 
-
+    /**
+     * Converts PatientDTO to Patient model.
+     * 
+     * @param patientDTO the PatientDTO to convert
+     * @return the converted Patient model
+     *
+     */
     public Patient patientDtoToModel(PatientDTO patientDTO) {
         Address address = addressDtoToModel(patientDTO.address()); // Convertendo AddressDTO para Address
         return new Patient(
@@ -29,11 +34,16 @@ public class Adapter {
                 patientDTO.phoneNumber(),
                 patientDTO.email(),
                 patientDTO.birthDay(),
-                address
-        );
+                address);
     }
 
-    // Método para converter de AddressDTO para Address
+    /**
+     * Converts AddressDTO to Address model.
+     * 
+     * @param addressDTO the AddressDTO to convert
+     * @return the converted Address model
+     *
+     */
     public Address addressDtoToModel(AddressDTO addressDTO) {
         return new Address(
                 addressDTO.id(),
@@ -42,11 +52,16 @@ public class Adapter {
                 addressDTO.state(),
                 addressDTO.neighborhood(),
                 addressDTO.zipCode(),
-                addressDTO.number()
-        );
+                addressDTO.number());
     }
 
-    // Método para converter de Patient para PatientDTO
+    /**
+     * Converts Patient model to PatientDTO.
+     * 
+     * @param patient the Patient model to convert
+     * @return the converted PatientDTO
+     *
+     */
     public PatientDTO patientModelToDto(Patient patient) {
         AddressDTO addressDTO = addressModelToDto(patient.getAddress());
         return new PatientDTO(
@@ -56,11 +71,16 @@ public class Adapter {
                 patient.getPhoneNumber(),
                 patient.getEmail(),
                 patient.getBirthDay(),
-                addressDTO
-        );
+                addressDTO);
     }
 
-    // Método para converter de Address para AddressDTO
+    /**
+     * Converts Address model to AddressDTO.
+     * 
+     * @param address the Address model to convert
+     * @return the converted AddressDTO
+     *
+     */
     public AddressDTO addressModelToDto(Address address) {
         return new AddressDTO(
                 address.getId(),
@@ -69,7 +89,6 @@ public class Adapter {
                 address.getState(),
                 address.getNeighborhood(),
                 address.getZipCode(),
-                address.getNumber()
-        );
+                address.getNumber());
     }
 }
